@@ -1,0 +1,5 @@
+<resources>
+    <style name="Theme.ImmichProvider" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorAccent">#006E4F</item>
+    </style>
+</resources>

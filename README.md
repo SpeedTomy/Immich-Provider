@@ -1,98 +1,98 @@
 # Immich Provider for Android
 
-Accédez aux photos et vidéos de votre serveur Immich depuis le sélecteur de fichiers Android.
+Access photos and videos from your Immich server directly from Android's system file picker.
 
-L’application ajoute une source **Immich** dans **Ouvrir à partir de**. Elle affiche la timeline dans le même ordre chronologique qu’Immich, fournit les miniatures, permet d’ouvrir les originaux et donne accès aux albums.
+The app adds an **Immich** source to **Open from**. It displays your timeline in the same chronological order as Immich, provides thumbnails, opens original files, and gives you access to your albums.
 
-> Ce projet est communautaire et n’est pas affilié à Immich. Le logo Immich appartient au projet Immich.
+> This is a community project and is not affiliated with Immich. The Immich logo belongs to the Immich project.
 
-## Télécharger l’APK
+## Download the APK
 
-[**Télécharger la dernière version**](https://github.com/SpeedTomy/Immich-Provider/releases/latest/download/immich-provider.apk)
+[**Download the latest version**](https://github.com/SpeedTomy/Immich-Provider/releases/latest/download/immich-provider.apk)
 
-Android 10 ou plus récent est nécessaire. L’APK doit être autorisé comme application provenant d’une source externe lors de la première installation.
+Android 10 or later is required. The first time you install the APK, Android may ask you to allow installations from this source.
 
-## Configuration
+## Setup
 
-### 1. Créer une clé API Immich
+### 1. Create an Immich API key
 
-Dans l’interface web Immich :
+In the Immich web interface:
 
-1. Ouvrez les paramètres de votre compte.
-2. Ouvrez la section **Clés API**.
-3. Créez une clé réservée à Immich Provider.
-4. Accordez uniquement les droits de lecture nécessaires aux médias, miniatures, originaux et albums.
-5. Copiez immédiatement la clé affichée.
+1. Open your account settings.
+2. Open the **API Keys** section.
+3. Create a dedicated key for Immich Provider.
+4. Grant only the read permissions required for media, thumbnails, original files, and albums.
+5. Copy the key immediately.
 
-Évitez d’utiliser une clé administrateur ou une clé possédant des droits de modification/suppression.
+Avoid using an administrator key or a key with permission to modify or delete data.
 
-### 2. Configurer l’application
+### 2. Configure the app
 
-1. Installez et ouvrez **Immich Provider**.
-2. Saisissez l’URL complète du serveur, par exemple :
+1. Install and open **Immich Provider**.
+2. Enter the full URL of your server, for example:
 
    ```text
    https://photos.example.com
    ```
 
-   ou, sur un réseau local de confiance :
+   Or, on a trusted local network:
 
    ```text
    http://192.168.1.201:2283
    ```
 
-3. Collez la clé API puis appuyez sur **Enregistrer**.
+3. Paste the API key, then tap the save button.
 
-La clé est chiffrée avec Android Keystore. L’application n’envoie les identifiants qu’au serveur configuré.
+The key is encrypted using Android Keystore. The app sends your credentials only to the configured server.
 
-### 3. Sélectionner une photo
+### 3. Select a photo
 
-Depuis une application proposant **Joindre un fichier**, **Parcourir** ou **Ouvrir à partir de** :
+From an app offering **Attach file**, **Browse**, or **Open from**:
 
-1. Ouvrez le sélecteur de fichiers Android.
-2. Affichez le volet des sources.
-3. Choisissez **Immich** — l’adresse du serveur apparaît sous le logo.
-4. Choisissez un média récent ou ouvrez le dossier **Albums**.
+1. Open Android's system file picker.
+2. Open the sources panel.
+3. Select **Immich** — the server address appears below the logo.
+4. Select a recent media item or open the **Albums** folder.
 
-## Fonctionnalités
+## Features
 
-- timeline triée par date de prise de vue, du plus récent au plus ancien ;
-- mêmes règles Immich pour la visibilité, les piles et les photos de partenaires ;
-- aperçu des photos et vidéos ;
-- téléchargement de l’original lors de l’ouverture ;
-- navigation dans les albums Immich ;
-- accès en lecture seule ;
-- prise en charge des serveurs locaux HTTP ;
-- clé API chiffrée avec Android Keystore ;
-- icône et adresse du serveur dans le sélecteur Android.
+- timeline sorted by capture date, from newest to oldest;
+- Immich visibility, stack, and partner-sharing rules;
+- photo and video previews;
+- original file download when opening a media item;
+- navigation through Immich albums;
+- read-only access;
+- support for local HTTP servers;
+- API key encryption using Android Keystore;
+- Immich icon and server address in Android's file picker.
 
-## Limites connues
+## Known limitations
 
-- La racine affiche actuellement les 250 médias les plus récents. Les albums restent accessibles intégralement.
-- La timeline compacte d’Immich ne fournit pas les noms originaux : Android peut donc afficher l’identifiant Immich comme nom du document.
-- L’original est d’abord téléchargé dans le cache de l’application ; il n’est pas encore diffusé en streaming.
-- HTTP est autorisé pour les serveurs locaux. N’utilisez pas HTTP sur Internet ou sur un réseau non fiable.
-- Le menu **Application multimédia cloud** du sélecteur photo Samsung utilise `CloudMediaProvider`, et non `DocumentsProvider`. Android réserve actuellement ce mécanisme aux applications approuvées par un constructeur/OEM ; une installation manuelle ne peut donc pas y ajouter Immich.
+- The root currently displays the 250 most recent media items. Albums remain fully accessible.
+- Immich's compact timeline response does not include original filenames, so Android may display the Immich asset ID as the document name.
+- Original files are downloaded to the app's private cache before being opened; streaming is not yet supported.
+- HTTP is allowed for local servers. Do not use HTTP over the Internet or on an untrusted network.
+- Samsung's **Cloud media app** photo-picker menu uses `CloudMediaProvider`, not `DocumentsProvider`. Android currently reserves this mechanism for apps approved by a device manufacturer/OEM, so a manually installed app cannot add Immich to that menu.
 
-## Compatibilité vérifiée
+## Verified compatibility
 
-- Android 10 et versions ultérieures (`minSdk 29`) ;
-- Immich 3.1.0 ;
-- Samsung Galaxy S24+ sous le sélecteur de fichiers Google/Samsung.
+- Android 10 and later (`minSdk 29`);
+- Immich 3.1.0;
+- Samsung Galaxy S24+ using the Google/Samsung system file picker.
 
-Les anciennes versions Immich peuvent fonctionner grâce aux routes de repli, sans garantie d’un ordre strictement identique.
+Older Immich versions may work through fallback API routes, but an exact timeline order is not guaranteed.
 
-## Sécurité et confidentialité
+## Security and privacy
 
-- La clé API est enregistrée dans `EncryptedSharedPreferences`, protégée par Android Keystore.
-- Les fichiers sont exposés uniquement en lecture.
-- Les aperçus et originaux sont conservés dans le cache privé de l’application.
-- Aucune télémétrie ni service tiers n’est intégré.
-- L’URL HTTP locale est volontairement acceptée. Préférez toujours HTTPS lorsqu’il est disponible.
+- The API key is stored in `EncryptedSharedPreferences` and protected by Android Keystore.
+- Files are exposed as read-only.
+- Previews and original files are stored in the app's private cache.
+- No telemetry or third-party service is included.
+- Local HTTP URLs are intentionally supported. Always prefer HTTPS when available.
 
-## Compiler le projet
+## Build from source
 
-Prérequis : Android SDK, JDK 17 et un appareil ou émulateur Android 10+.
+Requirements: Android SDK, JDK 17, and an Android 10+ device or emulator.
 
 ```sh
 git clone https://github.com/SpeedTomy/Immich-Provider.git
@@ -103,23 +103,23 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 ## Architecture
 
-- `ImmichDocumentsProvider.kt` : intégration Storage Access Framework ;
-- `ImmichMediaSource.kt` : appels HTTP et adaptation de l’API Immich ;
-- `DocumentId.kt` : identifiants stables des racines, albums et médias ;
-- `ImmichSettings.kt` : URL et stockage chiffré de la clé API ;
-- `MainActivity.kt` : écran de configuration.
+- `ImmichDocumentsProvider.kt`: Storage Access Framework integration;
+- `ImmichMediaSource.kt`: HTTP requests and Immich API adaptation;
+- `DocumentId.kt`: stable identifiers for roots, albums, and media items;
+- `ImmichSettings.kt`: server URL and encrypted API key storage;
+- `MainActivity.kt`: configuration screen.
 
-La timeline utilise `GET /api/timeline/buckets` et `GET /api/timeline/bucket`. Les albums utilisent `GET /api/albums` et `GET /api/albums/{id}`. Les miniatures et originaux utilisent les routes `/api/assets/{id}/thumbnail` et `/api/assets/{id}/original`.
+The timeline uses `GET /api/timeline/buckets` and `GET /api/timeline/bucket`. Albums use `GET /api/albums` and `GET /api/albums/{id}`. Thumbnails and original files use `/api/assets/{id}/thumbnail` and `/api/assets/{id}/original`.
 
-## Développement
+## Development
 
 ```sh
 ./gradlew :app:testDebugUnitTest
 ./gradlew :app:assembleDebug
 ```
 
-Les releases GitHub sont construites par `.github/workflows/release.yml` et signées avec une clé stable conservée dans les secrets GitHub.
+GitHub releases are built by `.github/workflows/release.yml` and signed with a stable key stored in GitHub Secrets.
 
-## Remerciements
+## Acknowledgements
 
-[Immich](https://immich.app/) pour son excellente plateforme de gestion de photos et son API. Le logo vectoriel utilisé par cette application provient du dossier `design` du dépôt officiel Immich.
+[Immich](https://immich.app/) for its excellent photo management platform and API. The vector logo used by this app comes from the `design` directory of the official Immich repository.
